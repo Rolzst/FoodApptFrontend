@@ -22,9 +22,10 @@ export default function HomePage() {
                     ¡Tu comida está a un solo click!
             </span>
             <SearchBar
-                 placeHolder='Busca por ciudad o país'
-                 onSubmit={handleSearchSubmit}
-            />     
+                  placeHolder='Busca por ciudad o país'
+                  onSubmit={handleSearchSubmit} 
+                  searchQuery={''}            
+            />   
             <div className='grid md:grid-cols-2 gap-5'>
                 <img src={landingImage}/>
                 <div className='flex flex-col items center justify-center gap-4 text center'>

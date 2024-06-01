@@ -124,7 +124,7 @@ export const useSearchRestaurants = (searchState:SearchState, city?: string) => 
         params.set("searchQuery", searchState.searchQuery);
 
         const url = API_BASE_URL 
-                  + '/api/restaurante/search' 
+                  + '/api/restaurante/search/' 
                   + city
                   + '?'
                   + params.toString();
