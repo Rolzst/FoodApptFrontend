@@ -122,6 +122,9 @@ export const useSearchRestaurants = (searchState:SearchState, city?: string) => 
     const createSearchRequest = async (): Promise<RestauranteSearchResponse> => {
         const params = new URLSearchParams();
         params.set("searchQuery", searchState.searchQuery);
+        params.set("page", searchState.page.toString());
+        params.set("selectedCuisines", searchState.selectedCuisines.join(","));
+        params.set("sortOptions", searchState.sortOptions)
 
         const url = API_BASE_URL 
                   + '/api/restaurante/search/' 

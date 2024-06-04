@@ -14,8 +14,7 @@ export default function SearchResultsInfo({total, city}: Props) {
               className="ml-2 text-sm font-semibold underline
                          cursor-pointer text-blue-500"
             >Cambiar ubicación</Link>  
-      </span>        
-      Agregar componente para ordenar los resultados          
+      </span>                  
     </div>
   )
 }
