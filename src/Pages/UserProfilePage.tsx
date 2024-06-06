@@ -16,5 +16,6 @@ export default function UserProfilePage(){
         getUser={getUser}
         onSave={updateUser}
         isLoading={isUpdateLoading}
-    />;
+        title={""}
+        buttonText={""}    />;
 }
