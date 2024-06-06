@@ -12,7 +12,7 @@ export const useGetRestaurant = () => {
 
     const getRestaurantRequest = async (): Promise<Restaurant> => {
         const accessToken = await getAccessTokenSilently();
-        const response = await fetch(API_BASE_URL + '/api/restaurante', {
+        const response = await fetch(API_BASE_URL + '/api/restaurante/', {
             method: 'GET',
             headers: {
                 Authorization: 'Bearer ' + accessToken,
@@ -45,7 +45,7 @@ export const useCreateRestaurant = () => {
     const createRestaurantRequest = async (restaurantFormData: FormData):Promise<Restaurant> => {
         const accessToken = await getAccessTokenSilently();
 
-        const res = await fetch(API_BASE_URL + "/api/restaurante", {
+        const res = await fetch(API_BASE_URL + "/api/restaurante/", {
             method: 'POST',
             headers: {
                 Authorization: 'Bearer ' + accessToken,
@@ -85,7 +85,7 @@ export const useUpdateRestaurant = () => {
 
     const updateRestaurantRequest = async (restaurantFormData: FormData): Promise<Restaurant> => {
         const accessToken = await getAccessTokenSilently();
-        const response = await fetch(API_BASE_URL + '/api/restaurante', {
+        const response = await fetch(API_BASE_URL + '/api/restaurante/', {
             method: "PUT",
             headers: {
                 Authorization: 'Bearer ' + accessToken,
@@ -153,5 +153,34 @@ export const useSearchRestaurants = (searchState:SearchState, city?: string) => 
     );
 
     return { results, isLoading };
-
 }//Fin de useSearchRestaurants
+
+export const useGetRestaurantById = (restaurantId?: string) =>{
+    const getRestaurantByIdRequest = async(): Promise <Restaurant> =>{
+
+        const url = API_BASE_URL
+                  + '/api/restaurante/'
+                  + restaurantId
+        
+        const response = await fetch(url);
+
+        if(!response.ok) {
+            throw new Error("Error al obtener los datos del restaurante")
+        }
+        return response.json();
+    }//Fin del getRestaurantByIdRequest
+
+    const {
+        data: restaurant,
+        isLoading
+    } = useQuery(
+        "fetchRestaurant",
+        getRestaurantByIdRequest,
+        {
+            enabled: !!restaurantId
+        }
+    );
+
+    return {restaurant, isLoading};
+
+}// Fin de useGetRestaurantById
