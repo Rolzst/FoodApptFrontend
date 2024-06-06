@@ -47,11 +47,13 @@ export default function CheckOutButton({onCheckOut, disabled}: Props) {
                 Confirmar compra
             </Button>
         </DialogTrigger>
-        <DialogContent className="max-w-[450px] md:min-w[700px] bg-gray-50">
+        <DialogContent className="max-w-[700px] md:min-w[400px] bg-gray-50">
             <UserProfileForm 
                 getUser={getUser}
                 onSave={onCheckOut}
-                isLoading={isGetUserLoading}/>
+                isLoading={isGetUserLoading}
+                title="Confirmar detalles de entrega"
+                buttonText="Pagar"/>
         </DialogContent>
     </Dialog>
   )

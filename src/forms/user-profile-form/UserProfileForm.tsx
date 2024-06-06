@@ -22,11 +22,20 @@ type Props = {
     getUser: User
     onSave: (userProfileData: UserFormData) => void;
     isLoading: boolean;
+    title?: string;
+    buttonText: string;
 }
-export default function UserProfileForm({ onSave, isLoading, getUser }: Props) {
-  const form = useForm<UserFormData>({
-    resolver: zodResolver(formSchema),
-    defaultValues: getUser
+export default function UserProfileForm(
+    { 
+        onSave, 
+        isLoading, 
+        getUser,
+        title = "Formulario de perfil del usuario",
+        buttonText = "Actualizar"
+    }: Props) {
+    const form = useForm<UserFormData>({
+        resolver: zodResolver(formSchema),
+        defaultValues: getUser
   });
 
   useEffect(() => {
@@ -41,7 +50,7 @@ export default function UserProfileForm({ onSave, isLoading, getUser }: Props) {
             <div>
                 <h2 className='text-2xl font-bold'
                 >
-                    Formulario de perfil del usuario
+                    {title}
                 </h2>
                 <FormDescription>
                     Consulta y cambia la información de tu perfil aquí.
@@ -123,7 +132,7 @@ export default function UserProfileForm({ onSave, isLoading, getUser }: Props) {
                 ): (
                     <Button type="submit" className="bg-orange-500"
                     >
-                        Actualizar
+                        {buttonText}
                     </Button>
                 )
             }
